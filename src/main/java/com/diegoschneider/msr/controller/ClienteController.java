@@ -1,7 +1,7 @@
 package com.diegoschneider.msr.controller;
 
 import com.diegoschneider.msr.model.Cliente;
-import com.diegoschneider.msr.repository.ClienteRespository;
+import com.diegoschneider.msr.repository.ClienteRepository;
 import com.diegoschneider.msr.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ import java.util.UUID;
 public class ClienteController {
 
     @Autowired
-    private ClienteRespository clienteRespository;
+    private ClienteRepository clienteRepository;
 
     @Autowired
     private ClienteService clienteService;

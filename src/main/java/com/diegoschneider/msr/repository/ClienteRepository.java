@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ClienteRespository extends JpaRepository<Cliente, UUID> {
+public interface ClienteRepository extends JpaRepository<Cliente, UUID> {
 
     List<Cliente> findByNomeContaining(String nome);
 
