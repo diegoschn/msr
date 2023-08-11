@@ -2,6 +2,7 @@ package com.diegoschneider.msr.model;
 
 import com.diegoschneider.msr.model.enums.StatusEntrega;
 import com.diegoschneider.msr.validation.ValidationGroups;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -32,13 +33,20 @@ public class Entrega {
 
     @NotNull
     private BigDecimal taxa;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime dataPedido;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime dataFinalizacao;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Enumerated(EnumType.STRING)
     private StatusEntrega statusEntrega;
 
     @Embedded
+    @Valid
+    @NotNull
     private Destinatario destinatario;
 
     @Valid

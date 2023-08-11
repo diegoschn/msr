@@ -5,10 +5,11 @@ import com.diegoschneider.msr.service.EntregaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/entregas")
@@ -17,10 +18,20 @@ public class EntregaController {
 
     private EntregaService entregaService;
 
-
-
     @PostMapping
-    public ResponseEntity<Entrega> create(@RequestBody Entrega entrega){
+    public ResponseEntity<Entrega> create(@Valid @RequestBody Entrega entrega){
         return new ResponseEntity<>(entregaService.create(entrega), HttpStatus.CREATED);
     }
+
+    @GetMapping
+    public ResponseEntity<List<Entrega>> findAll(){
+        return new ResponseEntity<>(entregaService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Entrega> findById(@PathVariable UUID id){
+        return new ResponseEntity<>(entregaService.search(id), HttpStatus.OK);
+    }
+
+
 }
