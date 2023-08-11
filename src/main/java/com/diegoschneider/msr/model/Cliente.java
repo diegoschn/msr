@@ -1,5 +1,6 @@
 package com.diegoschneider.msr.model;
 
+import com.diegoschneider.msr.validation.ValidationGroups;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.UUID;
 
@@ -21,6 +23,7 @@ import java.util.UUID;
 @Entity
 public class Cliente {
 
+    @NotNull(groups = ValidationGroups.ClienteId.class)
     @EqualsAndHashCode.Include
     @Id
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
