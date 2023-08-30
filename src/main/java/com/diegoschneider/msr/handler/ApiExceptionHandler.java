@@ -1,6 +1,7 @@
 package com.diegoschneider.msr.handler;
 
 import com.diegoschneider.msr.exception.ClienteNaoEncontradoException;
+import com.diegoschneider.msr.exception.EntregaException;
 import com.diegoschneider.msr.exception.NegocioException;
 import com.diegoschneider.msr.exception.Problema;
 import lombok.AllArgsConstructor;
@@ -73,5 +74,18 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
         return handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
 
+    }
+
+    @ExceptionHandler({EntregaException.class})
+    public ResponseEntity<Object> handleEntrega(EntregaException ex,
+                                                             WebRequest request){
+        HttpStatus status = HttpStatus.NOT_FOUND;
+
+        Problema problema = new Problema();
+        problema.setStatus(status.value());
+        problema.setDataHora(OffsetDateTime.now());
+        problema.setTitulo(ex.getMessage());
+
+        return handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
     }
 }

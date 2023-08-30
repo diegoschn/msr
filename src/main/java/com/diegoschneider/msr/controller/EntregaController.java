@@ -1,6 +1,7 @@
 package com.diegoschneider.msr.controller;
 
 import com.diegoschneider.msr.model.Entrega;
+import com.diegoschneider.msr.model.dto.EntregaDto;
 import com.diegoschneider.msr.service.EntregaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,19 +20,17 @@ public class EntregaController {
     private EntregaService entregaService;
 
     @PostMapping
-    public ResponseEntity<Entrega> create(@Valid @RequestBody Entrega entrega){
+    public ResponseEntity<EntregaDto> create(@Valid @RequestBody Entrega entrega){
         return new ResponseEntity<>(entregaService.create(entrega), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Entrega>> findAll(){
+    public ResponseEntity<List<EntregaDto>> findAll(){
         return new ResponseEntity<>(entregaService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Entrega> findById(@PathVariable UUID id){
+    public ResponseEntity<EntregaDto> findById(@PathVariable UUID id){
         return new ResponseEntity<>(entregaService.search(id), HttpStatus.OK);
     }
-
-
 }
