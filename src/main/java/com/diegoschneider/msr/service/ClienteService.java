@@ -1,6 +1,7 @@
 package com.diegoschneider.msr.service;
 
 import com.diegoschneider.msr.model.Cliente;
+import com.diegoschneider.msr.model.dto.ClienteDto;
 
 import java.util.List;
 import java.util.UUID;
@@ -8,15 +9,15 @@ import java.util.UUID;
 
 public interface ClienteService {
 
-    Cliente create(Cliente cliente);
+    ClienteDto create(Cliente cliente);
 
-    Cliente findById(UUID id);
+    ClienteDto findById(UUID id);
 
-    Cliente update(Cliente cliente, UUID id);
+//    ClienteDto update(Cliente cliente, UUID id);
 
     void remove(UUID clienteId);
 
-    List<Cliente> findByNome(String nome);
+    List<ClienteDto> findByNome(String nome);
 
-    List<Cliente> findAll();
+    List<ClienteDto> findAll();
 }

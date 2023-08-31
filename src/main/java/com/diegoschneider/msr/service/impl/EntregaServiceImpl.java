@@ -1,7 +1,6 @@
 package com.diegoschneider.msr.service.impl;
 
 import com.diegoschneider.msr.exception.ClienteNaoEncontradoException;
-import com.diegoschneider.msr.mapper.EntregaMapper;
 import com.diegoschneider.msr.mapper.MapperUtil;
 import com.diegoschneider.msr.model.Cliente;
 import com.diegoschneider.msr.model.Entrega;
@@ -17,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor

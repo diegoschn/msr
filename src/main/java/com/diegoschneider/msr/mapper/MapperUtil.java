@@ -22,8 +22,4 @@ public class MapperUtil {
     public static <S, D> List<D> toList(List<S> sourceList, Class<D> destinationType) {
         return modelMapper.map(sourceList, TypeToken.getParameterized(List.class, destinationType).getType());
     }
-//    private ClienteDto toModel(Cliente cliente){
-//        return modelMapper.map(cliente, ClienteDto.class);
-//    }
-
 }

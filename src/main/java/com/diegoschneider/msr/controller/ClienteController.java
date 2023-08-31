@@ -1,6 +1,7 @@
 package com.diegoschneider.msr.controller;
 
 import com.diegoschneider.msr.model.Cliente;
+import com.diegoschneider.msr.model.dto.ClienteDto;
 import com.diegoschneider.msr.repository.ClienteRepository;
 import com.diegoschneider.msr.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,29 +24,29 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @GetMapping
-    public List<Cliente> listar(){
+    public List<ClienteDto> listar(){
         return clienteService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> buscar(@PathVariable UUID id){
+    public ResponseEntity<ClienteDto> buscar(@PathVariable UUID id){
         return new ResponseEntity<>(clienteService.findById(id), HttpStatus.OK);
     }
 
     @GetMapping("/listarNomes")
-    public ResponseEntity<List<Cliente>> buscarPorNome(@RequestParam String nome){
+    public ResponseEntity<List<ClienteDto>> buscarPorNome(@RequestParam String nome){
         return new ResponseEntity<>(clienteService.findByNome(nome), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> create(@Valid @RequestBody Cliente cliente){
+    public ResponseEntity<ClienteDto> create(@Valid @RequestBody Cliente cliente){
         return new ResponseEntity<>(clienteService.create(cliente), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Cliente> update(@RequestBody Cliente cliente, @PathVariable UUID id){
-        return new ResponseEntity<>(clienteService.update(cliente, id), HttpStatus.OK);
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<ClienteDto> update(@RequestBody Cliente cliente, @PathVariable UUID id){
+//        return new ResponseEntity<>(clienteService.update(cliente, id), HttpStatus.OK);
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> remove(@PathVariable UUID id){
