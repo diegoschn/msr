@@ -13,7 +13,7 @@ public interface ClienteService {
 
     ClienteDto findById(UUID id);
 
-//    ClienteDto update(Cliente cliente, UUID id);
+    ClienteDto update(Cliente cliente, UUID id);
 
     void remove(UUID clienteId);
 

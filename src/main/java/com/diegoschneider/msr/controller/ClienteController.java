@@ -43,10 +43,10 @@ public class ClienteController {
         return new ResponseEntity<>(clienteService.create(cliente), HttpStatus.CREATED);
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<ClienteDto> update(@RequestBody Cliente cliente, @PathVariable UUID id){
-//        return new ResponseEntity<>(clienteService.update(cliente, id), HttpStatus.OK);
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<ClienteDto> update(@Valid @RequestBody Cliente cliente, @PathVariable UUID id){
+        return new ResponseEntity<>(clienteService.update(cliente, id), HttpStatus.OK);
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> remove(@PathVariable UUID id){

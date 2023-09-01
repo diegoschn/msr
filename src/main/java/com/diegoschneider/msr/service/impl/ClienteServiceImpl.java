@@ -9,8 +9,8 @@ import com.diegoschneider.msr.repository.ClienteRepository;
 import com.diegoschneider.msr.service.ClienteService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +22,6 @@ public class ClienteServiceImpl implements ClienteService {
 
 
     @Override
-    @Transactional
     public ClienteDto create(Cliente cliente) {
         boolean emailEmUso = clienteRepository.findByEmail(cliente.getEmail())
                 .stream()
@@ -44,13 +43,13 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     //TODO: Corrigir método, pois ao enviar objeto cliente para o método create, o mesmo da erro 500 na transação
-//    @Override
-//    public ClienteDto update(Cliente cliente, UUID id) {
-//        clienteRepository.findById(id)
-//                .orElseThrow(()-> new ClienteNaoEncontradoException(String.format("Cliente não encontrado")));
-//        cliente.setId(id);
-//        return create(cliente);
-//    }
+    @Override
+    public ClienteDto update(Cliente cliente, UUID id) {
+        clienteRepository.findById(id)
+                .orElseThrow(()-> new ClienteNaoEncontradoException(String.format("Cliente não encontrado")));
+        cliente.setId(id);
+        return create(cliente);
+    }
 
     @Override
     public void remove(UUID clienteId) {
