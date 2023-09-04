@@ -1,11 +1,10 @@
 package com.diegoschneider.msr.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.validation.constraints.NotBlank;
 
 @Embeddable
 @Getter

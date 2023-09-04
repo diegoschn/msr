@@ -1,17 +1,13 @@
 package com.diegoschneider.msr.model;
 
 import com.diegoschneider.msr.validation.ValidationGroups;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.UUID;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -25,8 +21,7 @@ public class Cliente {
     @NotNull(groups = ValidationGroups.ClienteId.class)
     @EqualsAndHashCode.Include
     @Id
-    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
-    @GeneratedValue(generator = "UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
