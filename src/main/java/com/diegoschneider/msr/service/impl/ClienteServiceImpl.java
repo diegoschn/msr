@@ -41,7 +41,6 @@ public class ClienteServiceImpl implements ClienteService {
                         String.format("Cliente não encontrado", id)));
     }
 
-    //TODO: Corrigir método, pois ao enviar objeto cliente para o método create, o mesmo da erro 500 na transação
     @Override
     public ClienteDto update(Cliente cliente, UUID id) {
         clienteRepository.findById(id)

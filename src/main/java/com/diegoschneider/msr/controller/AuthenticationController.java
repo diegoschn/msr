@@ -1,9 +1,11 @@
 package com.diegoschneider.msr.controller;
 
 import com.diegoschneider.msr.model.dto.AuthenticationDto;
+import com.diegoschneider.msr.model.dto.LoginResponseDto;
 import com.diegoschneider.msr.model.dto.RegisterDto;
 import com.diegoschneider.msr.model.user.User;
 import com.diegoschneider.msr.repository.UserRepository;
+import com.diegoschneider.msr.security.service.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,12 +28,16 @@ public class AuthenticationController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    TokenService tokenService;
+
     @PostMapping("/login")
     public ResponseEntity login(@Valid @RequestBody AuthenticationDto dto){
         var usernamePassword = new UsernamePasswordAuthenticationToken(dto.login(), dto.password());
-        authenticationManager.authenticate(usernamePassword);
+        var auth = authenticationManager.authenticate(usernamePassword);
+        var token = tokenService.generateToken((User) auth.getPrincipal());
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new LoginResponseDto(token));
     }
 
     @PostMapping("/register")
